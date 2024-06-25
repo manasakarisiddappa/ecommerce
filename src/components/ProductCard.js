@@ -1,12 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addToCart } from "../store";
+import { addToCart, removeFromCart } from "../utils/cartSlice";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ key, product, page }) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product));
+    if (page === "cart") dispatch(removeFromCart(product));
+    else dispatch(addToCart(product));
   };
 
   return (
@@ -22,7 +23,7 @@ const ProductCard = ({ product }) => {
         className="bg-blue-600 text-white p-2 rounded mt-2"
         onClick={handleAddToCart}
       >
-        Add to Cart
+        {page === "cart" ? "Remove Item" : "Add to Cart"}
       </button>
     </div>
   );

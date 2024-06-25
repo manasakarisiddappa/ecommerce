@@ -1,25 +1,28 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Header = () => {
+  const items = useSelector((store) => store.cart);
   return (
-    <header className="bg-blue-600 text-white p-4 flex justify-between items-center">
-      <h1 className="text-2xl">E-Commerce</h1>
+    <header className="bg-blue-600 text-white p-4 flex justify-between items-center fixed w-full">
+      <h1 className="text-sm md:text-2xl">E-Commerce</h1>
       <nav>
-        <ul className="flex space-x-4">
+        <ul className="text-sm md:text-2xl flex space-x-4">
           <li>
-            <a href="/" className="hover:underline">
+            <Link to="/" className="hover:underline">
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/products" className="hover:underline">
+            <Link to="/products" className="hover:underline">
               Products
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/cart" className="hover:underline">
-              Cart
-            </a>
+            <Link to="/cart" className="hover:underline">
+              Cart({items.length})
+            </Link>
           </li>
         </ul>
       </nav>
